@@ -12,3 +12,5 @@ test/packages/
 
 # Include when developing application packages.
 pubspec.lock
+.hgignore
+.idea/

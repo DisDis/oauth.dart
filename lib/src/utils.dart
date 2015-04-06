@@ -10,13 +10,14 @@ RandomAccessFile _randomFile;
 bool _haveWarned = false;
 
 Future<List<int>> getRandomBytes(int count) {
-  if(!Platform.isWindows) {
-    if(_randomFile == null) {
-      _randomFile = new File("/dev/urandom").openSync();
-    }
-    
-    return _randomFile.read(count);
-  } else {
+//  FIXME: Concurrency write
+//  if(!Platform.isWindows) {
+//    if(_randomFile == null) {
+//      _randomFile = new File("/dev/urandom").openSync();
+//    }
+//
+//    return _randomFile.read(count);
+//  } else {
     if(!_haveWarned) {
       _haveWarned = true;
       print(
@@ -28,5 +29,5 @@ Future<List<int>> getRandomBytes(int count) {
       var r = new Random();
       return new List<int>.generate(count, (_) => r.nextInt(255), growable: false);
     });
-  }
+//  }
 }
